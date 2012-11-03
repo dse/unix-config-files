@@ -1,3 +1,8 @@
+# This is unix-config-files/barebones/.bashrc.
+# 
+# It is invoked by interactive and non-interactive bash shells.
+# These are pretty much my personal preferences.
+
 if which emacs >/dev/null ; then
 	export EDITOR='emacs -nw'
 	export VISUAL='emacs -nw'
@@ -9,20 +14,15 @@ fi
 alias rm='command rm -i'
 alias mv='command mv -i'
 alias cp='command cp -i'
-case "$TERM" in
-xterm*|screen*|vt*|linux*)
-	_bold_=$'\e''[1m'
-	_reset_=$'\e''[m'
-	_rev_=$'\e''[7m'
-	;;
-*)
+
+if [[ "$-" == *i* ]] ; then	# shell is interactive
 	_bold_="`tput bold`"
 	_reset_="`tput sgr0`"
 	_rev_="`tput rev`"
-	;;
-esac
-if [ "$USER" = "root" ] || [ "$LOGNAME" = "root" ] ; then
-	PS1='${_rev_}\u@\h \w \$${_reset_} '
-else
-	PS1='${_bold_}\u@\h \w \$${_reset_} '
+	if [ "$USER" = "root" ] || [ "$LOGNAME" = "root" ] ; then
+		PS1='${_rev_}\u@\h \w \$${_reset_} '
+	else
+		PS1='${_bold_}\u@\h \w \$${_reset_} '
+	fi
 fi
+
