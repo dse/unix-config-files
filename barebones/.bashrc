@@ -3,12 +3,12 @@
 # It is invoked by interactive and non-interactive bash shells.
 # These are pretty much my personal preferences.
 
-if which emacs >/dev/null ; then
+if which emacs >/dev/null 2>/dev/null ; then
 	export EDITOR='emacs -nw'
 	export VISUAL='emacs -nw'
 	export FCEDIT='emacs -nw'
 fi
-if which less >/dev/null ; then
+if which less >/dev/null 2>/dev/null ; then
 	export PAGER='less'
 fi
 alias rm='command rm -i'
