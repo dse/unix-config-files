@@ -1,1 +1,9 @@
+# This is unix-config-files/barebones/.screenrc.
+# 
+# It is used as a run control file for GNU Screen.
+# These are pretty much my personal preferences.
+
+# because I'm too used to C-a and C-e working in emacs, I picked
+# this...
 escape ^z^z
+
