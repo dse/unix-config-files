@@ -1,0 +1,52 @@
+#!/bin/bash
+. lib/deploy-common.sh
+
+usage () {
+	cat <<EOF
+usage: $0 [OPTION ...] PROJECT ...
+  -n  dry run
+EOF
+}
+
+dryrun=0
+verbose=0
+while getopts 'hnv' option ; do
+	case "$option" in
+	h) usage; exit 0;;
+	n) dryrun=1;verbose=1;;
+	v) verbose=1;;
+	esac
+done
+shift $(( OPTIND - 1 ))
+
+require_arguments "$@"
+require_in_git_repos "$@"
+
+deploy_file () {
+	local filename="$1"
+	local src="$2"
+	local dest="$3"
+	local dir
+	if [ -e "$dest" ] ; then
+		if belongs_to_us "$dest" ; then
+			:
+		else
+			>&2 echo "$0: CONFLICT: '$dest' exists and isn't ours; not linking."
+			exit 1
+		fi
+	else
+		dir="${dest%/*}"
+		if [ ! -d "$dir" ] ; then
+			_run_ mkdir "$dir"
+		fi
+		_run_ ln -s "$src" "$dest"
+	fi
+}
+
+for project in "$@" ; do
+	sanity_check "$project"
+	echo "Deploying '$project' ..."
+	foreach_project_file_in "$project" deploy_file
+	echo "Done."
+done
+
