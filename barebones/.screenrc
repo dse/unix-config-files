@@ -7,3 +7,10 @@
 # this...
 escape ^z^z
 
+unsetenv DISPLAY
+
+altscreen on
+
+hardstatus alwayslastline
+hardstatus string '%{= kG}%?%-Lw%?%{+r} %n*%f %t%?(%u)%? %{-}%?%+Lw%?%? %= %H'
+
