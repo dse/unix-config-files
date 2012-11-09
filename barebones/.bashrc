@@ -20,9 +20,9 @@ if [[ "$-" == *i* ]] ; then	# shell is interactive
 	_reset_="`tput sgr0`"
 	_rev_="`tput rev`"
 	if [ "$USER" = "root" ] || [ "$LOGNAME" = "root" ] ; then
-		PS1='${_rev_}\u@\h \w \$${_reset_} '
+		PS1='\[${_rev_}\]\u@\h \w \$\[${_reset_}\] '
 	else
-		PS1='${_bold_}\u@\h \w \$${_reset_} '
+		PS1='\[${_bold_}\]\u@\h \w \$\[${_reset_}\] '
 	fi
 fi
 
