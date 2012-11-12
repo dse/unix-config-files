@@ -44,9 +44,9 @@ if [[ "$-" == *i* ]] ; then	# shell is interactive
 		_redbg_=$'\e'"[1;41m"
 	fi
 	if [ "$USER" = "root" ] || [ "$LOGNAME" = "root" ] ; then
-		PS1='\[${_reset_}${_white_}\]\u@\h \w \$\[${_reset_}\] '
+		PS1='\[${_reset_}${_white_}${_redbg_}\]\u@\h \w \$\[${_reset_}\] '
 	else
-		PS1='\[${_reset_}${_bold_}\]\u@\h \w \$\[${_reset_}\] '
+		PS1='\[${_reset_}${_white_}\]\u@\h \w \$\[${_reset_}\] '
 	fi
 fi
 
