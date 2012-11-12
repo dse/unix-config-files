@@ -3,19 +3,20 @@
 # It is invoked by interactive and non-interactive bash shells.
 # These are pretty much my personal preferences.
 
-if which emacs >/dev/null 2>/dev/null ; then
-	export EDITOR='emacs -nw'
-	export VISUAL='emacs -nw'
-	export FCEDIT='emacs -nw'
-fi
-if which less >/dev/null 2>/dev/null ; then
-	export PAGER='less'
-fi
-alias rm='command rm -i'
-alias mv='command mv -i'
-alias cp='command cp -i'
-
 if [[ "$-" == *i* ]] ; then	# shell is interactive
+
+	if which emacs >/dev/null 2>/dev/null ; then
+		export EDITOR='emacs -nw'
+		export VISUAL='emacs -nw'
+		export FCEDIT='emacs -nw'
+	fi
+	if which less >/dev/null 2>/dev/null ; then
+		export PAGER='less'
+	fi
+	alias rm='command rm -i'
+	alias mv='command mv -i'
+	alias cp='command cp -i'
+
 	_bold_="`tput bold`"
 	_reset_="`tput sgr0`"
 	_rev_="`tput rev`"
